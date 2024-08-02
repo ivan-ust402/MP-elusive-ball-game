@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .circle {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all .5s ease;
+        }
+        .description {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: aliceblue;
+        }
+        .window {
+            border: 1px solid #ccc;
+            max-width: 700px;
+            padding: 10px;
+            border-radius: 10px;
+            color: #474747;
+            user-select: none;
+            background-color: rgb(228, 217, 241);
+        }
+    </style>
+</head>
+<body>
+    <div class="description">
+        <div class="window">
+            <h1>The elusive ball game</h1>
+            <p>You need to catch up with the mouse cursor and click on the ball. If you catch up with the ball, it will turn blue and stop, which will mark your victory. To continue playing, click on the ball again.</p>
+            <br>
+            <h1>Игра "Ускользающий шарик"</h1>
+            <p>Необходимо догнать курсором мыши и кликнуть на шарик. В случае если вы догнали шарик он окрасится в синий цвет и остановится, что ознаменует вашу победу. Чтобы продолжить играть нажмите снова на шарик. </p>
+        </div>
+    </div>
+    <div class="circle"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const circle = document.querySelector('.circle');
+            let isMoving = false;
+
+            circle.addEventListener('mouseover', () => {
+                if (!isMoving) {
+                    const randomTop = Math.random() * window.innerHeight;
+                    const randomLeft = Math.random() * window.innerWidth;
+
+                    circle.style.top = `${randomTop}px`;
+                    circle.style.left = `${randomLeft}px`;
+                }
+            });
+
+            circle.addEventListener('mousedown', () => {
+                isMoving = true;
+                circle.style.backgroundColor = 'blue';
+            });
+
+            circle.addEventListener('mouseup', () => {
+                isMoving = false;
+                circle.style.backgroundColor = 'red';
+            });
+        });
+    </script>
+</body>
+</html>
